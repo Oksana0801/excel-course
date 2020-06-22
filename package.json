@@ -4,7 +4,8 @@
   "description": "Pure JS Excel Application",
   "main": "webpack.config.js",
   "dependencies": {
-    "@babel/polyfill": "^7.10.1"
+    "@babel/polyfill": "^7.10.1",
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
