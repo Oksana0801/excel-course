@@ -1,0 +1,30 @@
+export class Emitter {
+  constructor() {
+    this.listeners = {};
+  }
+  // dispatch, fire, trigger
+  // Уведомляем слушателей если они есть
+  // table.emit('table:select', {a:1})
+  emit(eventName, ...args) {
+    if (!Array.isArray(this.listeners[eventName])) {
+      return false;
+    }
+    this.listeners[eventName].forEach(listener => {
+      listener(...args);
+    })
+    return true;
+  }
+
+  // on, listen
+  // подписываемся на уведомление
+  // добовляем нового слушателя
+  // formula.subscribe('table:select', () => {})
+  subscribe(eventName, fn) {
+    this.listeners[eventName] = this.listeners[eventName] || [];
+    this.listeners[eventName].push(fn);
+    return () => {
+      this.listeners[eventName] =
+        this.listeners[eventName].filter(listener => listener !== fn)
+    }
+  }
+}
